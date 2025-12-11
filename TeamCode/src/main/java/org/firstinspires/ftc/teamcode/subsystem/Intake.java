@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystem;
 
+import static java.lang.Thread.sleep;
+
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -19,90 +21,88 @@ public class Intake extends SubsystemBase {
     public static double GRABBER_TWO_FULLGRAB = 0.19;
 
 
-    private final Servo tilt;
-    private final Servo grab;
-    private final Servo bucket;
-    private final DcMotor lift;
+//    private final Servo tilt;
+//    private final Servo grab;
+//    private final Servo bucket;
+//    private final DcMotor lift;
+//
+        private final DcMotor shootL;
 
-    private final DcMotor shootL;
+        private  final DcMotor shootR;
 
-    private final DcMotor extender;
+        private final DcMotor RF;
+        private final DcMotor LF;
+        private final DcMotor LB;
+        private final DcMotor RB;
+
+        private final DcMotor Intak;
+        private final DcMotor Ramp;
+
+//
+//    private final DcMotor extender;
 
 
     private double m_intakeSpeed = 1;
 
     public Intake(final HardwareMap hwMap) {
-        tilt = hwMap.get(Servo.class, "tilt");
-        grab = hwMap.get(Servo.class, "grab");
-        bucket = hwMap.get(Servo.class, "bucket");
-        lift = hwMap.get(DcMotor.class, "lift");
-        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        extender = hwMap.get(DcMotor.class, "extender");
         shootL = hwMap.get(DcMotor.class, "shootL");
+        shootR = hwMap.get(DcMotor.class, "shootR");
+        RB = hwMap.get(DcMotor.class, "RB");
+        LB = hwMap.get(DcMotor.class, "LB");
+        RF = hwMap.get(DcMotor.class, "RF");
+        LF = hwMap.get(DcMotor.class, "LF");
+        Intak = hwMap.get(DcMotor.class, "Intake");
+        Ramp = hwMap.get(DcMotor.class, "Ramp");
+//        tilt = hwMap.get(Servo.class, "tilt");
+//        grab = hwMap.get(Servo.class, "grab");
+//        bucket = hwMap.get(Servo.class, "bucket");
+//        lift = hwMap.get(DcMotor.class, "lift");
+//        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        extender = hwMap.get(DcMotor.class, "extender");
+//        shootL = hwMap.get(DcMotor.class, "shootL");
+
+
     }
 
     public void initial(){
-        bucket.setPosition(0.798);
-        grab.setPosition(0.99);
-        tilt.setPosition(1);
-    }
 
-    public void tiltUp(){
-        tilt.setPosition(1);
     }
 
 
-    public void lauch(){
-    }
-    public void tiltMid(){tilt.setPosition(0.7);}
-
-    public void tiltDown(){
-        tilt.setPosition(0.18);
+    public void shoot(){
+        shootL.setPower(1);
+        shootR.setPower(-1);
     }
 
-    public void grabUp(){
-        grab.setPosition(0.67);
+    public void stop(){
+        shootL.setPower(0);
+        shootR.setPower(0);
+        Ramp.setPower(0);
+        Intak.setPower(0);
     }
 
-    public void grabMid(){
-        grab.setPosition(0.99);
+    public void convey(){
+        Ramp.setPower(-1);
+        Intak.setPower(1);
     }
 
-    public void grabDown(){
-        grab.setPosition(1);
+    public void startIntake(){
+        Intak.setPower(1);
+        Ramp.setPower(-0.7);
     }
 
-    public void liftRaise(){
-        lift.setTargetPosition(-3050);
-        lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        lift.setPower(0.8);
+    public void stopIntake(){
+        Intak.setPower(0);
+        Ramp.setPower(0);
     }
 
-    public void extend() {
-        extender.setPower(0.55);
+    public void will(){
+        Ramp.setPower(0.4);
+    }
+    public void willStop(){
+        Ramp.setPower(0);
     }
 
-    public void unextend() {
-        extender.setPower(0);
-    }
-
-    public void dextend() {
-        extender.setPower(-0.55);
-    }
-
-    public void liftDown(){
-        lift.setTargetPosition(-25);
-        lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        lift.setPower(0.8);
-    }
-
-    public void pourBucket(){
-        bucket.setPosition(0.28);
-    }
-
-    public void downBucket(){
-        bucket.setPosition(0.74);
-    }
 
 
 }

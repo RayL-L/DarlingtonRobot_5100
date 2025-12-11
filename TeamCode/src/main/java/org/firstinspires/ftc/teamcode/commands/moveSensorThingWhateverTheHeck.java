@@ -40,9 +40,9 @@ public class moveSensorThingWhateverTheHeck extends CommandBase {
 
     @Override
     public void execute() {
-       if(m_base.robot.msensor.getDistence()  < 20 || timer.seconds() > 7) {
-           m_base.robot.m_drive.setDrivePowers(new PoseVelocity2d(new Vector2d(0, 0), 0));
-       }
+//       if(m_base.robot.sensor.getDistence()  < 20 || timer.seconds() > 7) {
+//           m_base.robot.m_drive.setDrivePowers(new PoseVelocity2d(new Vector2d(0, 0), 0));
+//       }
 
 
 

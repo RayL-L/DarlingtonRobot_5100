@@ -112,19 +112,19 @@ public abstract class ScrappyAutoBase extends CommandOpMode {
      //   visionPortal.setProcessorEnabled(detectionProcessor,true);
 
 
-        telemetry.addData("Starting Trajectories"," d");
-        telemetry.update();
+//        telemetry.addData("Starting Trajectories"," d");
+//        telemetry.update();
         initAuto();
 
 //        robot.bucket.initial();
 
-        while (opModeInInit()) {
-            detectionResult = detectionProcessor.getDetectionResult();
-            telemetry.addData("Detected = ", detectionResult);
-            //telemetry.addData("srvo = ", robot.m_lift.getM_Leftraise());
-            telemetry.update();
-            sleep(25);
-        }
+//        while (opModeInInit()) {
+//            detectionResult = detectionProcessor.getDetectionResult();
+//            telemetry.addData("Detected = ", detectionResult);
+//            //telemetry.addData("srvo = ", robot.m_lift.getM_Leftraise());
+//            telemetry.update();
+//            sleep(25);
+//        }
 
 //        visionPortal.setProcessorEnabled(detectionProcessor,false);
 //      //  visionPortal.setProcessorEnabled(tfodStack,isfar);
@@ -143,8 +143,8 @@ public abstract class ScrappyAutoBase extends CommandOpMode {
     @Override
     public void run() {
         super.run();
-        //robot.m_drive.updatePoseEstimate();
-        //PoseStorage.currentPose = robot.m_drive.pose;
+        robot.m_drive.updatePoseEstimate();
+        PoseStorage.currentPose = robot.m_drive.pose;
 
 
     }

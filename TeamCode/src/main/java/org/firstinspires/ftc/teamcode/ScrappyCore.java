@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystem.Dropper;
 import org.firstinspires.ftc.teamcode.subsystem.Intake;
 import org.firstinspires.ftc.teamcode.subsystem.Lift;
 import org.firstinspires.ftc.teamcode.subsystem.Plane;
-import org.firstinspires.ftc.teamcode.subsystem.Sensor;
+//import org.firstinspires.ftc.teamcode.subsystem.Sensor;
 
 public class ScrappyCore extends Robot {
     public final ScrappySettings.AllianceType ALLIANCE_TYPE;
@@ -27,6 +27,8 @@ public class ScrappyCore extends Robot {
 
     public Intake shootL;
 
+    public  Intake shootR;
+
 //    public Sensor DS;
 
     public Lift m_lift;
@@ -34,7 +36,7 @@ public class ScrappyCore extends Robot {
     public Dropper m_dropper;
     public Plane m_plane;
 
-    public Sensor msensor;
+//    public Sensor sensor;
 
 
 
@@ -51,11 +53,14 @@ public class ScrappyCore extends Robot {
 
         // Initialize subsystems
         m_drive = new MecanumDrive(hardwareMap, startPose);
-        tilt = new Intake(hardwareMap);
-        grab = new Intake(hardwareMap);
-        bucket = new Intake(hardwareMap);
-        lift = new Intake(hardwareMap);
-        msensor = new Sensor(hardwareMap);
+        shootL = new Intake(hardwareMap);
+
+        shootR = new Intake(hardwareMap);
+//        tilt = new Intake(hardwareMap);
+//        grab = new Intake(hardwareMap);
+//        bucket = new Intake(hardwareMap);
+//        lift = new Intake(hardwareMap);
+//        sensor = new Sensor(hardwareMap);
 //        DS = new Sensor(hardwareMap);
 
 //        m_lift = new Lift(hardwareMap);

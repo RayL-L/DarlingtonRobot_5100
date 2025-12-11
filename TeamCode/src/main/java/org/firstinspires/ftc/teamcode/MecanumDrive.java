@@ -61,14 +61,14 @@ public final class MecanumDrive {
                 RevHubOrientationOnRobot.UsbFacingDirection.DOWN;
 
         // drive model parameters
-        public double inPerTick = 0.00205023065094832; //
-        public double lateralInPerTick = 0.0016661450970360545;        //  inPerTick;
-        public double trackWidthTicks = 6935.025677768576;
+        public double inPerTick = 0.00201227; //
+        public double lateralInPerTick = 0.001611967389865368;        //  inPerTick;
+        public double trackWidthTicks = 6821.759556009212;
 
         // feedforward parameters (in tick units)`
-        public double kS = 0.8399599776840265;
-        public double kV = 0.00034223418224742474;
-        public double kA = 0.00004;
+        public double kS = 0.8816073941317288;
+        public double kV = 0.00034402994317052273;
+        public double kA = 0.00006;
 
         // path profile parameters (in inches)
         public double maxWheelVel = 50;
@@ -80,13 +80,13 @@ public final class MecanumDrive {
         public double maxAngAccel = Math.PI;
 
         // path controller gains
-        public double axialGain = 8.5;
+        public double axialGain = 1.1;
         public double lateralGain = 8.5;
-        public double headingGain = 4; // shared with turn
+        public double headingGain = 13; // shared with turn
 
-        public double axialVelGain = 1.7;
-        public double lateralVelGain = 1.4;
-        public double headingVelGain = 1.5; // shared with turn
+        public double axialVelGain = 0;
+        public double lateralVelGain = 0;
+        public double headingVelGain = 0; // shared with turn
     }
 
     public static Params PARAMS = new Params();
@@ -213,7 +213,7 @@ public final class MecanumDrive {
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
         leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
         rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightBack.setDirection(DcMotorSimple.Direction.FORWARD);
 
         // TODO: reverse motor directions if needed
         //   leftFront.setDirection(DcMotorSimple.Direction.REVERSE);

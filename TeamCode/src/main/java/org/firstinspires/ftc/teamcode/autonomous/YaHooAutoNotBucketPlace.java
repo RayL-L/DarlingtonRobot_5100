@@ -14,21 +14,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class YaHooAutoNotBucketPlace extends LinearOpMode {
 
 
-    private DcMotor LF;
 
-    private DcMotor LB;
-
-    private DcMotor RF;
-
-    private DcMotor RB;
-
-    private DcMotor lift;
-
-    private DcMotor tilt;// 3
-
-    private DcMotorEx grab;//0
-
-    private Servo bucket;
+    private DcMotor RB, LB, RF, LF, Intake, Ramp, shootL, shootR;
 
 
     private double Speed;
@@ -37,47 +24,37 @@ public class YaHooAutoNotBucketPlace extends LinearOpMode {
     public void runOpMode() {
 
         LF = hardwareMap.get(DcMotor.class, "LF");
-
         LB = hardwareMap.get(DcMotor.class, "LB");
-
         RF = hardwareMap.get(DcMotor.class, "RF");
-
         RB = hardwareMap.get(DcMotor.class, "RB");
 
-        lift = hardwareMap.get(DcMotor.class, "lift");
-
-        tilt = hardwareMap.get(DcMotor.class, "tilt"); //back: 560   front:-135
-
-        grab = hardwareMap.get(DcMotorEx.class, "grab");
-
-        bucket = hardwareMap.get(Servo.class, "bucket"); //down:0.15    up:0.7
+        Intake = hardwareMap.get(DcMotor.class, "Intake");
+        Ramp = hardwareMap.get(DcMotor.class, "Ramp");
+        shootR = hardwareMap.get(DcMotor.class, "shootR");
+        shootL = hardwareMap.get(DcMotor.class, "shootL");
 
 
 
         LF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         LB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         RF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         RB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Ramp.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shootR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shootL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-
-        LF.setDirection(DcMotorSimple.Direction.FORWARD);
-
-        LB.setDirection(DcMotorSimple.Direction.FORWARD);
-
+        //!!!
+        LF.setDirection(DcMotorSimple.Direction.REVERSE);
+        LB.setDirection(DcMotorSimple.Direction.REVERSE);
         RF.setDirection(DcMotorSimple.Direction.REVERSE);
-
         RB.setDirection(DcMotorSimple.Direction.REVERSE);
+        Intake.setDirection(DcMotorSimple.Direction.FORWARD);
+        Ramp.setDirection(DcMotorSimple.Direction.REVERSE);
+        shootR.setDirection(DcMotorSimple.Direction.REVERSE);
+        shootL.setDirection(DcMotorSimple.Direction.FORWARD);
 
-
-        bucket.setPosition(0);
-
-        grab.setPower(0);
-
+        
         Gamepad currentDriverOneGamepad = new Gamepad();
 
         Gamepad previousDriverOneGamepad = new Gamepad();
@@ -87,22 +64,10 @@ public class YaHooAutoNotBucketPlace extends LinearOpMode {
         Gamepad previousDriverTwoGamepad = new Gamepad();
 
         waitForStart();
-        if (opModeIsActive()) {
+        if (opModeIsActive()){
+            LF.setPower(0.7);
 
-
-            LF.setPower(0.8);
-            RF.setPower(0.8);
-            RB.setPower(0.8);
-            LB.setPower(0.8);
-            sleep(1800);
-            LF.setPower(0);
-            RF.setPower(0);
-            RB.setPower(0);
-            LB.setPower(0);
         }
-
-
-
 
     }
 

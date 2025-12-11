@@ -57,7 +57,7 @@ public class RobotZhang extends LinearOpMode {
         LF.setDirection(DcMotorSimple.Direction.REVERSE);
         LB.setDirection(DcMotorSimple.Direction.REVERSE);
         RF.setDirection(DcMotorSimple.Direction.REVERSE);
-        RB.setDirection(DcMotorSimple.Direction.FORWARD);
+        RB.setDirection(DcMotorSimple.Direction.REVERSE);
         Intake.setDirection(DcMotorSimple.Direction.FORWARD);
         Ramp.setDirection(DcMotorSimple.Direction.REVERSE);
         shootR.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -144,6 +144,18 @@ public class RobotZhang extends LinearOpMode {
                     }
                 }
 
+//            if(currentDriverOneGamepad.dpad_down){
+//                RB.setPower(0.2);
+//            }
+//            if(currentDriverOneGamepad.dpad_up){
+//                RB.setPower(0.2);
+//            }
+//            if(currentDriverOneGamepad.dpad_right){
+//                RB.setPower(0.2);
+//            }
+//            if(currentDriverOneGamepad.dpad_left){
+//                RB.setPower(0.2);
+//            }
 
                 SetDriving(gamepad1.left_stick_y, gamepad1.left_stick_x*-1, gamepad1.right_stick_x*-1, speed);
         }

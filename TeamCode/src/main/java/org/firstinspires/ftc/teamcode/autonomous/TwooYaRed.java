@@ -12,47 +12,59 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.ScrappySettings;
 import org.firstinspires.ftc.teamcode.commands.AprilTagPoseRED;
 import org.firstinspires.ftc.teamcode.commands.RunAction;
+import org.firstinspires.ftc.teamcode.subsystem.Intake;
+import org.firstinspires.ftc.teamcode.subsystem.Shooter;
 import org.opencv.core.Mat;
 
 
 public class TwooYaRed extends ScrappyAutoBase {
 
 
-    public static final Pose2d startingPose = new Pose2d(30, 52, Math.toRadians(180));
+    public static final Pose2d startingPose = new Pose2d(-55, 55, Math.toRadians(315));
     public Action firstMove;
 
-
-
-
+    private Intake intake;
     public TwooYaRed() {
         super(ScrappySettings.AllianceType.RED, ScrappySettings.AllianceSide.FAR, startingPose);
-
     }
-
-
-
     @Override
     public void initAuto() {
+        intake = new Intake(hardwareMap);
         firstMove = robot.m_drive.actionBuilder(startingPose)
-//                .stopAndAdd(() -> {
-//                    robot.tilt.tiltDown();
-//                    sleep(300);
-//                    robot.bucket.initial();
-//                    sleep(300); // strafeto splineto
-//                })
-                .strafeTo(new Vector2d(30,40))
-                .strafeToLinearHeading(new Vector2d(54,52), Math.toRadians(225))
-                .waitSeconds(0.5)
+
+                .strafeTo(new Vector2d(-24, 24))
+                .stopAndAdd(() -> {
+                    intake.shoot();
+                    sleep(800);
+                    intake.convey();
+                    sleep(2000);
+                    intake.stop();
+                })
+
+                .strafeToLinearHeading(new Vector2d(-10, 14), Math.toRadians(270))
+                .waitSeconds(2)
+
+                .strafeToLinearHeading(new Vector2d(-32, 12), Math.toRadians(180))
+
+                .strafeTo(new Vector2d(-55, 12))
+                .afterTime(0.2, () -> {
+                    intake.startIntake();
+                })
+                .afterTime(1.85, () -> {
+                    intake.stopIntake();
+                })
+                .strafeToLinearHeading(new Vector2d(-24,24), Math.toRadians(315))
+                .stopAndAdd(() -> {
+                    intake.will();
+                    sleep(400);
+                    intake.willStop();
+                    intake.shoot();
+                    sleep(800);
+                    intake.convey();
+                    sleep(2000);
+                    intake.stop();
+                })
                 .build();
-//                .stopAndAdd(() -> {
-//                            robot.lift.liftRaise();
-//                            sleep(1800);
-//                            robot.bucket.pourBucket();
-//                            sleep(950);
-//                            robot.lift.liftDown();
-//                            robot.bucket.downBucket();
-//                        }
-//                )
 
 
     }
@@ -65,27 +77,6 @@ public class TwooYaRed extends ScrappyAutoBase {
 
                 new SequentialCommandGroup(
                         new RunAction(firstMove)
-//                        new RunAction(firstMove).alongWith(
-////                                new SequentialCommandGroup(
-////                                        new InstantCommand(() ->{
-////                                            robot.lift.liftRaise();
-////                                        }),
-////                                        new WaitCommand(2500),
-////                                        new InstantCommand(() ->{
-////                                            robot.bucket.pourBucket();
-////                                        }),
-////                                        new WaitCommand(1100),
-////                                        new InstantCommand(() ->{
-////                                            robot.lift.liftDown();
-////                                            robot.bucket.downBucket();
-////                                        })
-////                                )
-//                        )
-
-
-
-
-
 
 
                 )
