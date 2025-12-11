@@ -33,12 +33,14 @@ public class AprilTagWebCam {
                 .setOutputUnits(DistanceUnit.CM, AngleUnit.DEGREES)
                 .build();
 
-        VisionPortal.Builder builder = new VisionPortal.Builder();
-        builder.setCamera(hwMap.get(WebcamName.class, "webcam1"));
-        builder.setCameraResolution(new Size(640, 480));
-        builder.addProcessor(aprilTagProcessor);
+        WebcamName webcam = hwMap.get(WebcamName.class, "webcam1");
 
-        visionPortal = builder.build();
+        visionPortal = new VisionPortal.Builder()
+                .setCamera(webcam)
+                .setCameraResolution(new Size(640, 480))
+                .addProcessor(aprilTagProcessor)
+                .enableLiveView(true)
+                .build();
 
 
     }
@@ -74,6 +76,24 @@ public class AprilTagWebCam {
         }
         return null;
     }
+
+
+    public int detectFirstIdWithTimeoutMs(int timeoutMs) {
+        long start = System.currentTimeMillis();
+        int id = -1;
+
+        while (System.currentTimeMillis() - start < timeoutMs && id == -1) {
+            update();  // refresh detections
+            if (!detectedTags.isEmpty()) {
+                id = detectedTags.get(0).id;
+                displayDetectionTelemetry(detectedTags.get(0));
+                telemetry.update();
+            }
+        }
+
+        return id; // -1 if nothing seen
+    }
+
 
     public void stop(){
         if (visionPortal != null){

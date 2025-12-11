@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 
 @Autonomous(name = "DarbotsAuto ", group = "Competition")
-public class TwoYa_TestRed extends TwooYaRed {
+public class TwoYa_TestRed extends BlueLeft {
     public TwoYa_TestRed() {
     }
 }
