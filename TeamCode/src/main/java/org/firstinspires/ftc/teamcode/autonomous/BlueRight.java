@@ -12,28 +12,14 @@ import org.firstinspires.ftc.teamcode.commands.RunAction;
 import org.firstinspires.ftc.teamcode.subsystem.AprilTagWebCam;
 import org.firstinspires.ftc.teamcode.subsystem.Shooters;
 
+@Autonomous(name = "BlueRight", group = "Competition")
+public class BlueRight extends ScrappyAutoBase{
 
-
-/*
-AUTO CAUTION NOTES:
-AprilTag detecting position: (-5, 14)
-Balls' position:
-    ID 21: (-32, 12)
-    ID 22: (-32, -12)
-    ID 23: (-32, -24)
-*/
-
-
-@Autonomous(name = "BlueLeft ", group = "Competition")
-public class BlueLeft extends ScrappyAutoBase {
-
-
-    public static final Pose2d startingPose = new Pose2d(-55, 55, Math.toRadians(315));
-    public Action firstMove;
-    public Action extraBall;
+    public static final Pose2d startingPose = new Pose2d(-10, -65, Math.toRadians(90));
+    public Action firstMove, extraBall;
     private Shooters shooters;
     AprilTagWebCam aprilTagWebCam = new AprilTagWebCam();
-    public BlueLeft() {
+    public BlueRight() {
         super(ScrappySettings.AllianceType.RED, ScrappySettings.AllianceSide.FAR, startingPose);
     }
     @Override
@@ -206,6 +192,4 @@ public class BlueLeft extends ScrappyAutoBase {
 
         );
     }
-
-
 }

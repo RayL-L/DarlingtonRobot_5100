@@ -1,5 +1,4 @@
 package org.firstinspires.ftc.teamcode.autonomous;
-
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -12,28 +11,14 @@ import org.firstinspires.ftc.teamcode.commands.RunAction;
 import org.firstinspires.ftc.teamcode.subsystem.AprilTagWebCam;
 import org.firstinspires.ftc.teamcode.subsystem.Shooters;
 
+@Autonomous(name = "RedRight", group = "Competition")
+public class RedRight extends ScrappyAutoBase{
 
-
-/*
-AUTO CAUTION NOTES:
-AprilTag detecting position: (-5, 14)
-Balls' position:
-    ID 21: (-32, 12)
-    ID 22: (-32, -12)
-    ID 23: (-32, -24)
-*/
-
-
-@Autonomous(name = "BlueLeft ", group = "Competition")
-public class BlueLeft extends ScrappyAutoBase {
-
-
-    public static final Pose2d startingPose = new Pose2d(-55, 55, Math.toRadians(315));
-    public Action firstMove;
-    public Action extraBall;
+    public static final Pose2d startingPose = new Pose2d(55, 55, Math.toRadians(225));
+    public Action firstMove, extraBall;
     private Shooters shooters;
     AprilTagWebCam aprilTagWebCam = new AprilTagWebCam();
-    public BlueLeft() {
+    public RedRight() {
         super(ScrappySettings.AllianceType.RED, ScrappySettings.AllianceSide.FAR, startingPose);
     }
     @Override
@@ -42,34 +27,32 @@ public class BlueLeft extends ScrappyAutoBase {
         shooters = new Shooters(hardwareMap);
         firstMove = robot.m_drive.actionBuilder(startingPose)
 
-                .strafeTo(new Vector2d(-26, 26))
+                .strafeTo(new Vector2d(26, 26))
                 .stopAndAdd(() -> {
                     shooters.shoot();
                     sleep(800);
                     shooters.convey();
                     sleep(2000);
                     shooters.stop();
-                }) //Shooting Preload Balls
+                })
 
-                .strafeToLinearHeading(new Vector2d(-5, 14), Math.toRadians(270)) //Detecting AprilTag
+                .strafeToLinearHeading(new Vector2d(-5, 14), Math.toRadians(270))
                 .waitSeconds(1)
-
                 .build();
     }
 
     private void build21(){
         extraBall = robot.m_drive.actionBuilder(new Pose2d(-5,14,Math.toRadians(270)))
-                .strafeToLinearHeading(new Vector2d(-32, 12), Math.toRadians(180)) //balls' position
+                .strafeToLinearHeading(new Vector2d(32, 12), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(-55, 12))
+                .strafeTo(new Vector2d(55, 12))
                 .afterTime(0.2, () -> {
                     shooters.startIntake();
                 })
                 .afterTime(1.85, () -> {
                     shooters.stopIntake();
-                }) //picking balls
-
-                .strafeToLinearHeading(new Vector2d(-24,24), Math.toRadians(315))
+                })
+                .strafeToLinearHeading(new Vector2d(24,24), Math.toRadians(225))
                 .stopAndAdd(() -> {
                     shooters.will();
                     sleep(400);
@@ -83,9 +66,9 @@ public class BlueLeft extends ScrappyAutoBase {
 
                 //pick another one 22
 
-                .strafeToLinearHeading(new Vector2d(-32, -12), Math.toRadians(180))
+                .strafeToLinearHeading(new Vector2d(32, -12), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(-55, -12))
+                .strafeTo(new Vector2d(55, -12))
                 .afterTime(0.2, () -> {
                     shooters.startIntake();
                 })
@@ -97,17 +80,17 @@ public class BlueLeft extends ScrappyAutoBase {
     }
 
     private void build22(){
-        extraBall = robot.m_drive.actionBuilder(new Pose2d(-5,14,Math.toRadians(270)))
-                .strafeToLinearHeading(new Vector2d(-32, -12), Math.toRadians(180))
+        extraBall = robot.m_drive.actionBuilder(new Pose2d(-5,14,Math.toRadians(0)))
+                .strafeToLinearHeading(new Vector2d(32, -12), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(-55, -12))
+                .strafeTo(new Vector2d(55, -12))
                 .afterTime(0.2, () -> {
                     shooters.startIntake();
                 })
                 .afterTime(1.85, () -> {
                     shooters.stopIntake();
                 })
-                .strafeToLinearHeading(new Vector2d(-24,24), Math.toRadians(315))
+                .strafeToLinearHeading(new Vector2d(24,24), Math.toRadians(225))
                 .stopAndAdd(() -> {
                     shooters.will();
                     sleep(400);
@@ -137,16 +120,16 @@ public class BlueLeft extends ScrappyAutoBase {
 
     private void build23(){
         extraBall = robot.m_drive.actionBuilder(new Pose2d(-5,14,Math.toRadians(270)))
-                .strafeToLinearHeading(new Vector2d(-32, -24), Math.toRadians(180))
+                .strafeToLinearHeading(new Vector2d(32, -24), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(-55, -24))
+                .strafeTo(new Vector2d(55, -24))
                 .afterTime(0.2, () -> {
                     shooters.startIntake();
                 })
                 .afterTime(1.85, () -> {
                     shooters.stopIntake();
                 })
-                .strafeToLinearHeading(new Vector2d(-24,24), Math.toRadians(315))
+                .strafeToLinearHeading(new Vector2d(24,24), Math.toRadians(225))
                 .stopAndAdd(() -> {
                     shooters.will();
                     sleep(400);
@@ -160,9 +143,9 @@ public class BlueLeft extends ScrappyAutoBase {
 
                 //pick another one 22
 
-                .strafeToLinearHeading(new Vector2d(-32, -12), Math.toRadians(180))
+                .strafeToLinearHeading(new Vector2d(32, -12), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(-55, -12))
+                .strafeTo(new Vector2d(55, -12))
                 .afterTime(0.2, () -> {
                     shooters.startIntake();
                 })
@@ -206,6 +189,5 @@ public class BlueLeft extends ScrappyAutoBase {
 
         );
     }
-
 
 }

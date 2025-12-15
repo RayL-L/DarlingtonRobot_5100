@@ -4,14 +4,9 @@ import static java.lang.Thread.sleep;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
-
-public class Intake extends SubsystemBase {
+public class Shooters extends SubsystemBase {
     public static double GRABBER_ONE_IDLE_POS = 0;
 
     public static double GRABBER_ONE_GRAB_POS = 1;
@@ -30,11 +25,6 @@ public class Intake extends SubsystemBase {
 
         private  final DcMotor shootR;
 
-        private final DcMotor RF;
-        private final DcMotor LF;
-        private final DcMotor LB;
-        private final DcMotor RB;
-
         private final DcMotor Intak;
         private final DcMotor Ramp;
 
@@ -44,23 +34,11 @@ public class Intake extends SubsystemBase {
 
     private double m_intakeSpeed = 1;
 
-    public Intake(final HardwareMap hwMap) {
+    public Shooters(final HardwareMap hwMap) {
         shootL = hwMap.get(DcMotor.class, "shootL");
         shootR = hwMap.get(DcMotor.class, "shootR");
-        RB = hwMap.get(DcMotor.class, "RB");
-        LB = hwMap.get(DcMotor.class, "LB");
-        RF = hwMap.get(DcMotor.class, "RF");
-        LF = hwMap.get(DcMotor.class, "LF");
         Intak = hwMap.get(DcMotor.class, "Intake");
         Ramp = hwMap.get(DcMotor.class, "Ramp");
-//        tilt = hwMap.get(Servo.class, "tilt");
-//        grab = hwMap.get(Servo.class, "grab");
-//        bucket = hwMap.get(Servo.class, "bucket");
-//        lift = hwMap.get(DcMotor.class, "lift");
-//        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        extender = hwMap.get(DcMotor.class, "extender");
-//        shootL = hwMap.get(DcMotor.class, "shootL");
-
 
     }
 

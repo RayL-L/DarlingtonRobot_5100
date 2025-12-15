@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 import org.firstinspires.ftc.teamcode.ScrappyCore;
 import org.firstinspires.ftc.teamcode.ScrappySettings;
-import org.firstinspires.ftc.teamcode.commands.InitPositions;
 
 public abstract class ScrappyTeleOpBase extends CommandOpMode {
     private final ScrappySettings.AllianceType m_allianceType;

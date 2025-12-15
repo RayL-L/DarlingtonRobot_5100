@@ -3,14 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.arcrobotics.ftclib.command.Robot;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.commands.BulkCacheHandler;
-import org.firstinspires.ftc.teamcode.subsystem.Conveyor;
-import org.firstinspires.ftc.teamcode.subsystem.Dropper;
-import org.firstinspires.ftc.teamcode.subsystem.Intake;
-import org.firstinspires.ftc.teamcode.subsystem.Lift;
-import org.firstinspires.ftc.teamcode.subsystem.Plane;
+import org.firstinspires.ftc.teamcode.subsystem.Shooters;
 //import org.firstinspires.ftc.teamcode.subsystem.Sensor;
 
 public class ScrappyCore extends Robot {
@@ -19,24 +14,8 @@ public class ScrappyCore extends Robot {
 
     // Subsystems
     public MecanumDrive m_drive;
-
-    public Intake tilt;
-    public Intake grab;
-    public Intake bucket;
-    public Intake lift;
-
-    public Intake shootL;
-
-    public  Intake shootR;
-
-//    public Sensor DS;
-
-    public Lift m_lift;
-    public Conveyor m_conveyor;
-    public Dropper m_dropper;
-    public Plane m_plane;
-
-//    public Sensor sensor;
+    public Shooters shootL;
+    public  Shooters shootR;
 
 
 
@@ -53,21 +32,9 @@ public class ScrappyCore extends Robot {
 
         // Initialize subsystems
         m_drive = new MecanumDrive(hardwareMap, startPose);
-        shootL = new Intake(hardwareMap);
+        shootL = new Shooters(hardwareMap);
+        shootR = new Shooters(hardwareMap);
 
-        shootR = new Intake(hardwareMap);
-//        tilt = new Intake(hardwareMap);
-//        grab = new Intake(hardwareMap);
-//        bucket = new Intake(hardwareMap);
-//        lift = new Intake(hardwareMap);
-//        sensor = new Sensor(hardwareMap);
-//        DS = new Sensor(hardwareMap);
-
-//        m_lift = new Lift(hardwareMap);
-//
-//        m_conveyor = new Conveyor(hardwareMap);
-//        m_dropper = new Dropper(hardwareMap);
-//        m_plane = new Plane(hardwareMap);
 
     }
 }
