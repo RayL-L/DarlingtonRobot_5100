@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 
 public class MeepMeepTest {
 
-    // toggles
     public static boolean blue = false;
     public static boolean close = true;
 
@@ -27,7 +26,7 @@ public class MeepMeepTest {
 
         RoadRunnerBotEntity bot = new DefaultBotBuilder(meepMeep)
                 .setConstraints(
-                        50,            // maxVel
+                        50,     // maxVel
                         50,            // maxAccel
                         Math.PI,       // maxAngVel
                         Math.PI,       // maxAngAccel
@@ -35,14 +34,14 @@ public class MeepMeepTest {
                 )
                 .build();
 
-        // ===== START POSE (exactly from your table) =====
+        // ===== START POSE =====
         Pose2d startPose;
         if (blue && close)          startPose = new Pose2d(-50, -50, Math.toRadians(53));
         else if (blue)              startPose = new Pose2d( 61, -11, Math.toRadians(0));
         else if (close)             startPose = new Pose2d(-50,  50, Math.toRadians(-53));
         else                        startPose = new Pose2d( 61,  11, Math.toRadians(0));
 
-        // ===== SHOOTING POSE (position + heading exactly from your table) =====
+        // ===== SHOOTING POSE =====
         Vector2d shootPos;
         double shootHeading;
         if (blue && close) {
@@ -59,8 +58,7 @@ public class MeepMeepTest {
             shootHeading = Math.toRadians(-32);
         }
 
-        // ===== EXAMPLE: after shooting, go to a “ball” point =====
-        // Edit these to your real targets
+        // ===== BALLS and SHOOTING =====
 
         double ball_y = blue ? -23.5 : 23.5;
         double x21 = -11.5, x22 = 12, x23 = 36;
