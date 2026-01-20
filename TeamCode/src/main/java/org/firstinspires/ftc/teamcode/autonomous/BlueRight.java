@@ -26,6 +26,7 @@ public class BlueRight extends ScrappyAutoBase{
     public void initAuto() {
         aprilTagWebCam.init(hardwareMap, telemetry);
         shooters = new Shooters(hardwareMap);
+
         firstMove = robot.m_drive.actionBuilder(startingPose)
 
                 .strafeTo(new Vector2d(-26, 26))
